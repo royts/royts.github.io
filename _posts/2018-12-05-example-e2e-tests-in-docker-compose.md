@@ -39,6 +39,7 @@ services:
     # source: https://github.com/eficode/wait-for
     # `depends_on` is not enough.
     # We use wait-for to start the service only after Mysql and ES init is done
+    # consider moving to docker's healthcheck
     command: ./wait-for elasticsearch:9200 --timeout=90 -- ./wait-for mysql:3306 --timeout=90 -- make start
     links:
       - mysql
@@ -116,5 +117,6 @@ e2e-test:
 docker-e2e-test:
 	docker-compose rm -f mysql
 	docker-compose rm -f  elasticsearch
+  # consider moving to  --exit-code-from=my_app_e2etests
 	docker-compose up -t 300 --abort-on-container-exit
 ```
