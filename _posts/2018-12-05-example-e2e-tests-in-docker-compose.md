@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [example] E2E Tests by Docker-Compose
+title: '[example] E2E Tests by Docker-Compose'
 fbcomments: yes
 tags: [docker, docker-compose]
 ---
