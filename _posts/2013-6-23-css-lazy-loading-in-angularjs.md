@@ -55,7 +55,7 @@ First, it don't prevent loading the 3rd party CSS files over multiple times.
 Second' it is ugly! the CSS let the browser know how it should render the template. It's place is in the template and not in the controller!
 
 ## A better solution
-I've created a new directive and used it in the templates. 
+I've created a new directive and used it in the templates.
 I added a peace of logic to verify we are loading each style file only once:
 ```javascript
 app.directive('lazyStyle',
