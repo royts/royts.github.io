@@ -15,30 +15,30 @@ Then we'lll check the data in the DB and ES to verify the changes has been made.
 
 ### Show Me Some Code!
 
+
 ```yml
+# docs: https://docs.docker.com/compose/compose-file/
 version: '3'
 services:
-
-  claims:
-    container_name: claims_service
+  my_app:
+    container_name: my_app
     build: ./
     image: ${FULL_CONTAINER_NAME}
     environment:
-      - FORTER_ENV=develop
-      - NODE_ENV=dev
-      - ES_SESSIONS=elasticsearch
-      - ES_SESSIONS_DISABLE_SSL=true
+      - ENV=test
+      - ES_HOST=elasticsearch
       - DB_HOST=mysql
-      - DB_DATABASE=db
+      - DB_NAME=db
       - DB_USER=root
       - DB_PASS=abc123
-      - ES_SESSIONS_INDEX_NAME=sessions
-      - ES_HOST=elasticsearch
     ports:
       - 8080:8080
     depends_on:
       - mysql
       - elasticsearch
+    # source: https://github.com/eficode/wait-for
+    # `depends_on` is not enough.
+    # We use wait-for to start the service only after Mysql and ES init is done
     command: ./wait-for elasticsearch:9200 --timeout=90 -- ./wait-for mysql:3306 --timeout=90 -- npm start
     links:
       - mysql
@@ -46,32 +46,30 @@ services:
     logging:
       driver: json-file
 
-  claims_e2etests:
-    container_name: claims_e2etests
+  my_app_e2etests:
+    container_name: my_app_e2etests
     build: ./
     image: ${FULL_CONTAINER_NAME}
     environment:
-      - FORTER_ENV=develop
-      - NODE_ENV=dev
-      - ES_SESSIONS=elasticsearch
-      - ES_SESSIONS_DISABLE_SSL=true
+      - ENV=develop
+      # We make some changes in ES and Mysql before the test and read from it in the assertion phase
+      - ES_HOST=elasticsearch
       - DB_HOST=mysql
-      - DB_DATABASE=db
+      - DB_NAME=db
       - DB_USER=root
       - DB_PASS=abc123
-      - ES_SESSIONS_INDEX_NAME=sessions
-      - ES_HOST=elasticsearch
-      - CLAIMS_HOST=http://claims
-      - MOCHA_FILE_PATH=/app/test-reports/
     depends_on:
-      - claims
+      - my_app
       - elasticsearch
+      - mysql
     command: ./wait-for claims:8080 --timeout=60 -- npm run ci-test
     links:
       - elasticsearch
-      - claims
+      - mysql
+      - my_app
     volumes:
-      - ${TESTS_OUTPUT_PATH}:/app/test-reports/
+      # We save the test reports in JunitXML format so the CI can show them in a nice way
+      - ${TESTS_OUTPUT_PATH}:/app/test-output/
     logging:
       driver: json-file
 
@@ -81,10 +79,13 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=abc123
       - MYSQL_DATABASE=db
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=pass
     volumes:
-      - ./test/e2e/config/init-db/:/docker-entrypoint-initdb.d
+    # The content of /e2e_tests/init_db/:
+    # 1.create-tables.sql
+    # 2.insert-data.sql
+    #
+    # These sql statements files will run automatically after DB init is done
+      - ./e2e_tests/init_db/:/docker-entrypoint-initdb.d
     logging:
       driver: json-file
 
@@ -103,4 +104,16 @@ services:
         #hard: 4096
     logging:
       driver: json-file
+```
+
+### How to run
+```make
+# MakeFile
+
+e2e-test:
+	# run the actual tests using Mocha, Pytest or anything else
+docker-e2e-test:
+	docker-compose rm -f mysql
+	docker-compose rm -f  elasticsearch
+	docker-compose up -t 300 --abort-on-container-exit
 ```
