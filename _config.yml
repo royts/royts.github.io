@@ -3,18 +3,18 @@
 permalink:           pretty
 
 # Setup
-title:               'I wanna be a Craftsman.'
+title:               I wanna be a Craftsman.
 tagline:             'Thoughts about software engineering. by Roy Tsabari'
 description:         '_'
-url:                 http://royts.com
+url:                 http://lanyon.getpoole.com
 baseurl:             ''
 paginate:            5
 
 # About/contact
 author:
-  name:              Roy Tsabari
-  url:               https://twitter.com/royts
-  email:             roy@royts.com
+  name:              Mark Otto
+  url:               https://twitter.com/mdo
+  email:             markdotto@gmail.com
 
 # Custom vars
 version:             1.0.0
