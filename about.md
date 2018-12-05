@@ -4,7 +4,7 @@ title: About
 ---
 
 <p class="message">
-  I'll be happy to hear your thoughts!
+  Talk to me!
 </p>
 Hi, I'm Roy.
 
