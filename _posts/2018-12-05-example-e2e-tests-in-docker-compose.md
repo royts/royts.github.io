@@ -15,7 +15,7 @@ Then we'lll check the data in the DB and ES to verify the changes has been made.
 
 ### Show Me Some Code!
 
-```Yaml
+```yml
 version: '3'
 services:
 
