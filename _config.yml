@@ -1,6 +1,7 @@
 # Permalinks
 #
 permalink:           pretty
+baseurl: ""
 
 # Setup
 title:               I wanna be a Craftsman.
