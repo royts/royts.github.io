@@ -39,7 +39,7 @@ services:
     # source: https://github.com/eficode/wait-for
     # `depends_on` is not enough.
     # We use wait-for to start the service only after Mysql and ES init is done
-    command: ./wait-for elasticsearch:9200 --timeout=90 -- ./wait-for mysql:3306 --timeout=90 -- npm start
+    command: ./wait-for elasticsearch:9200 --timeout=90 -- ./wait-for mysql:3306 --timeout=90 -- make start
     links:
       - mysql
       - elasticsearch
@@ -52,7 +52,7 @@ services:
     image: ${FULL_CONTAINER_NAME}
     environment:
       - ENV=develop
-      # We make some changes in ES and Mysql before the test and read from it in the assertion phase
+      # We make some changes in ES and Mysql in tests init and read from it in the assertion phase
       - ES_HOST=elasticsearch
       - DB_HOST=mysql
       - DB_NAME=db
@@ -109,9 +109,10 @@ services:
 ### How to run
 ```make
 # MakeFile
-
+start:
+	# Start the service
 e2e-test:
-	# run the actual tests using Mocha, Pytest or anything else
+	# Run the actual tests using Mocha, Pytest or anything else
 docker-e2e-test:
 	docker-compose rm -f mysql
 	docker-compose rm -f  elasticsearch
