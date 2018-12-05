@@ -4,7 +4,9 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  {% for tag in page.tags %}{% capture tag_name %}{{ tag }}{% endcapture %}[{{ tag_name }}]{% endfor %} {{ page.title }}
+  {% for tag in tags %}
+	<a href="#{{ tag | slugify }}"> {{ tag }} </a>
+  {% endfor %}
   <!--<div class='chips'>-->
   <!--{% for tag in page.tags %}{% capture tag_name %}{{ tag }}{% endcapture %}<div class="chip">{{ tag_name }}</div>{% endfor %}-->
     <!--<div class="chip">test</div><div class="chip">test2</div>-->
