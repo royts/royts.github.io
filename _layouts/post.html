@@ -5,9 +5,7 @@ layout: default
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <div class='chips'><div class="chip">test</div><div class="chip">test2</div></div>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
   {{ content }}
-</div>
 <!--<div class="related">-->
   <!--<h2>Related Posts</h2>-->
   <!--<ul class="related-posts">-->
@@ -23,6 +21,7 @@ layout: default
     <!--{% endfor %}-->
   <!--</ul>-->
 <!--</div>-->
+<span class="post-date">{{ page.date | date_to_string }}</span>
 <div>
   {% include facebook-init.html %}
   {% if page.fbcomments %}
@@ -30,4 +29,5 @@ layout: default
     <h4>Comments</h4>
     <div class="fb-comments" data-href="http://royts.com{{ page.url }}" data-colorscheme="light" data-num-posts="4" data-width="706"></div>
   {% endif %}
+</div>
 </div>
