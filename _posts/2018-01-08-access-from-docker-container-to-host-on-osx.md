@@ -2,7 +2,7 @@
 layout: post
 title: Access from container to host
 fbcomments: yes
-tags: docker osx
+tags: [docker, osx]
 ---
 `docker run` has a [networking configuration you can specify](https://docs.docker.com/engine/reference/run/#network-settings).
 If you pass: `--network=host` the container will use the host network stack.
