@@ -1,3 +1,6 @@
+.chips {
+  margin-bottom: 20px;
+}
 .chip {
     display: inline-block;
     height: 32px;

@@ -4,7 +4,10 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <div class='chips'><div class="chip">test</div><div class="chip">test2</div></div>
+  <div class='chips'>
+  {% for tag in page.tags %}{% capture tag_name %}{{ tag }}{% endcapture %}<div class="chip">{{ tag_name }}</div>{% endfor %}
+    <!--<div class="chip">test</div><div class="chip">test2</div>-->
+  </div>
   {{ content }}
 <!--<div class="related">-->
   <!--<h2>Related Posts</h2>-->
