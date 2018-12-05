@@ -8,7 +8,7 @@ title:               I wanna be a Craftsman.
 tagline:             'Thoughts about software engineering. by Roy Tsabari'
 description:         'royts.com'
 url:                 http://royts.com
-baseurl:             ''
+baseurl:             'http://royts.com'
 paginate:            5
 
 # About/contact
