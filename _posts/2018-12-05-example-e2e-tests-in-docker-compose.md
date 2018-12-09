@@ -5,7 +5,7 @@ fbcomments: yes
 tags: [docker, docker-compose]
 ---
 ### The App
-A web aplication that offer date CRUD by http requests.
+A classic  web aplication that allow CRUD operations on business data by http requests.
 The application is using MySql to store the data and post to ElasticSearch for easy search.
 
 ### The Tests
@@ -17,6 +17,8 @@ Then we'lll check the data in the DB and ES to verify the changes has been made.
 
 
 ```yml
+# docker-sompose.yaml
+
 # docs: https://docs.docker.com/compose/compose-file/
 version: '3'
 services:
