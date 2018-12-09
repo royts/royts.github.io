@@ -119,6 +119,6 @@ e2e-test:
 docker-e2e-test:
 	docker-compose rm -f mysql
 	docker-compose rm -f  elasticsearch
-  # consider moving to --exit-code-from=my_app_e2etests
+  # consider moving to --exit-code-from=my_app_e2etests  
 	docker-compose up -t 300 --abort-on-container-exit
 ```
