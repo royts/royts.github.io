@@ -95,7 +95,7 @@ services:
   elasticsearch:
     container_name: elasticsearch
     image: elasticsearch:5.6
-    ports:
+    expose:
       - 9200:9200
     # https://docs.docker.com/compose/compose-file/#ulimits
     # https://www.ibm.com/support/knowledgecenter/en/ssw_aix_71/com.ibm.aix.cmds5/ulimit.htm
@@ -118,7 +118,7 @@ e2e-test:
 	# Run the actual tests using Mocha, Pytest or anything else
 docker-e2e-test:
 	docker-compose rm -f mysql
-	docker-compose rm -f  elasticsearch  
-	# consider moving to --exit-code-from=my_app_e2etests  
+	docker-compose rm -f  elasticsearch
+	# consider moving to --exit-code-from=my_app_e2etests
 	docker-compose up -t 300 --abort-on-container-exit
 ```
