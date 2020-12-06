@@ -1,21 +1,21 @@
 # Permalinks
 #
 permalink:           pretty
-baseurl:             'https://royts.com'
+baseurl:             'https://royts.co'
 
 # Setup
 title:               I wanna be a Craftsman.
 tagline:             'Thoughts about software engineering. by Roy Tsabari'
-description:         'royts.com'
-url:                 https://royts.com
-baseurl:             'https://royts.com'
+description:         'royts.co'
+url:                 https://royts.co
+baseurl:             'https://royts.co'
 paginate:            5
 
 # About/contact
 author:
   name:              Roy Tsabari
-  url:               https://royts.com
-  email:             roy@royts.com
+  url:               https://royts.co
+  email:             roy@royts.co
 
 # Custom vars
 version:             1.0.0
