@@ -9,7 +9,7 @@ Some of your application modules need to be initialize before they can be used. 
 # The old way
 I see this pattern in many places:
 
-```Javascript
+```javascript
 // server.js
 const express = require('express'),
     db = require('./db'),
