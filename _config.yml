@@ -1,14 +1,13 @@
 # Permalinks
 #
 permalink:           pretty
-baseurl:             'https://royts.co'
 
 # Setup
 title:               I wanna be a Craftsman.
 tagline:             'Thoughts about software engineering. by Roy Tsabari'
-description:         'royts.co'
+description:         'Thoughts about software engineering. by Roy Tsabari'
 url:                 https://royts.co
-baseurl:             'https://royts.co'
+baseurl:             https://royts.co
 paginate:            5
 
 # About/contact
