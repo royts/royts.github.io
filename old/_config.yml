@@ -1,0 +1,22 @@
+# Permalinks
+#
+permalink:           pretty
+
+# Setup
+title:               I wanna be a Craftsman.
+tagline:             'Thoughts about software engineering. by Roy Tsabari'
+description:         'Thoughts about software engineering. by Roy Tsabari'
+url:                 https://royts.co
+baseurl:             https://royts.co
+paginate:            5
+
+# About/contact
+author:
+  name:              Roy Tsabari
+  url:               https://royts.co
+  email:             roy@royts.co
+
+# Custom vars
+version:             1.0.0
+
+theme: jekyll-theme-hacker

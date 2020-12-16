@@ -1,15 +1,15 @@
 ---
 layout: page
 title: About
+permalink: /about/
 ---
 
-<p class="message">
-  Talk to me!
-</p>
-Hi, I'm Roy.
+Some information about you!
 
-I'm an enthusiast software engineer, currently working for [Forter](https://www.forter.com/).
+### More Information
 
-You can find me on [Twitter](https://twitter.com/royts) , [Github](https://github.com/royts) and [Linkedin](https://www.linkedin.com/in/roy-tsabari-55589b12).
+A place to include any other types of information that you'd like to include about yourself.
 
-You can drop me an email at roy@royts.co
+### Contact me
+
+[email@domain.com](mailto:email@domain.com)
