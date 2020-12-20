@@ -1,12 +1,1 @@
-planning/**
 node_modules/**
-manual/claims-miner/**
-manual/post-payments/**
-manual/fix-amounts/**
-manual/update-claims-to-not-in-policy/**
-manual/crons/billing-claims-fixes/**
-manual/crons/chbk-flag-to-claim/**
-manual/crons/claims-alerts/**
-manual/crons/fill-exchange-rates/**
-manual/crons/missing-billing/**
-manual/crons/session-to-claim-forger/**
