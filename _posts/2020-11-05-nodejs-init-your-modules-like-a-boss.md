@@ -4,8 +4,8 @@ title: Init you node modules like a boss
 fbcomments: yes
 tags: [nodejs]
 ---
-*tl;dr*
-*- Init your resources when the node module is loaded*
+*tl;dr* . 
+*- Init your resources when the node module is loaded* . 
 *- In every place you need the resource, require/import it and await*
 
 # The Problem
