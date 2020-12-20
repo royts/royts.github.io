@@ -9,8 +9,8 @@ tags: [nodejs]
 - In every place you need the resource, require/import it and await 
 
 # The Problem
-You have a module that hold a resource that need to be initialized.  
-This can be opening a DB connection, loading configuration or loading some cache.
+You have a module that use a resource which need to be initialized.  
+This can be a DB connection that need to be opened, a configuration that need to be loaded, or a cache that need to be warmed up. 
 
 # The Old Way
 I'll use a DB connection initialization in a web server as an example.  
@@ -75,14 +75,16 @@ const express = require('express'),
 const app = express();
 app.get('/dog', dog.getDogs);
 app.listen(8080);
-
+```
+```javascript
 // dog.js
 const db = require('./db');
 async function getDogs() {
   const conn = await db.getConn();
   return conn.query('SELECT * FROM dogs');
 }
-
+```
+```javascript
 // db.js
 async function initConn() {
   //init connection
@@ -105,7 +107,7 @@ db.getConn().then(() => app.listen(8080));
 ```
 
 # Why Is It a Better Way?
-- You don't need to decide (and might make mistakes) about module dependencies. It is the result of modules requiring each other.
+- You don't need to decide (and might make mistakes) about module dependencies. It happens automatically as the result of modules requiring each other.
 - Your server module does not have to know all the dependencies between modules. Just those which are critical for it's operation.
 - In the real world you probably going to use the DB module in other places like CRONs or manual scripts. Instead of managing dependencies again you just require the module you need (DB) and everything else just happen.
-- Modules are initiated as soon as possible and you know that no time is wasted on waiting for other dependency your resource might not need.
+- Modules are initiated as soon as possible, and you know that no time is wasted on waiting for other dependency your resource might not need.
