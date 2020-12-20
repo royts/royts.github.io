@@ -5,7 +5,7 @@ fbcomments: yes
 tags: [nodejs]
 ---
 *tl;dr*
-*- Init you resources when the node module is loaded*
+*- Init your resources when the node module is loaded*
 *- In every place you need the resource, require/import it and await*
 
 # The Problem
