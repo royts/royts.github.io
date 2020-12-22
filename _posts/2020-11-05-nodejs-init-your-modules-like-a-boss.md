@@ -9,7 +9,7 @@ tags: [nodejs]
 We have resources that need to be initialized before we can use them.  
 Some examples: DB connection that needs to be opened, a configuration that needs to be loaded, or a cache that needs to be warmed up. 
 
-*tl;dr*  
+# *tl;dr*  
 *- Init your resources when the node module is loaded*  
 *- In every place you need the resource, require/import it and await*  
 # The Old Way
