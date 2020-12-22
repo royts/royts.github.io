@@ -1,21 +1,21 @@
 ---
 layout: post
-title: Init you node modules like a boss
+title: Init you're node modules like a boss
 fbcomments: yes
 tags: [nodejs]
 ---
-*tl;dr*  
-*- Init your resources when the node module is loaded*  
-*- In every place you need the resource, require/import it and await*
 
 # The Problem
-You have a module that use a resource which need to be initialized.  
-This can be a DB connection that need to be opened, a configuration that need to be loaded, or a cache that need to be warmed up. 
+We have resources that need to be initialized before we can use them.  
+Some examples: DB connection that needs to be opened, a configuration that needs to be loaded, or a cache that needs to be warmed up. 
 
+*tl;dr*  
+*- Init your resources when the node module is loaded*  
+*- In every place you need the resource, require/import it and await*  
 # The Old Way
-Let's use a DB connection initialization in a web server as an example.  
+In this example, we need to initialize a DB connection when we load up our web server.
   
-I see this pattern a-lot:
+A common pattern is:
 
 ```javascript
 // server.js
@@ -47,7 +47,7 @@ function init() {
 module.exports = { getConn: () => connection }
 ```
 
-I even saw cases where the server module managed all the dependencies:
+There are even implementations where the server module combines all the dependencies:
 ```javascript
 // server.js
 const express = require('express'),
@@ -67,7 +67,7 @@ config.init().then(() =>
   ),
 );
 ```
-# The Better Way
+# A Better Way
 ```javascript
 // server.js
 const express = require('express'),
@@ -94,7 +94,7 @@ const connPromise = initConn();
 module.exports = { getConn: () => connPromise };
 ```
 
-And if you don't want your server to get requests before the DB connection initialization, you can wait on it:
+And if we don't the server to get requests before the DB connection is initialized, we can wait on it:
 ```javascript
 // server.js
 const express = require('express'),
@@ -107,8 +107,9 @@ app.get('/dog', dog.getDogs);
 db.getConn().then(() => app.listen(8080));
 ```
 
-# Why Is It a Better Way?
-- Module dependencies happens automatically as the result of modules requiring each other. No need to define and maintain it manually.
-- The server module does not have to know all the dependencies between modules. Just those which are critical for it's operation.
-- In the real world we probably are going to use the DB module in other places like CRONs or manual scripts. Instead of managing dependencies again we can just require the module we need (DB) and everything else just works.
-- Modules are initiated as soon as possible, and we know that no time is wasted on waiting for other dependency our resource might not need.
+# Why Is It Better?
+- Module dependencies happen automatically as the result of modules requiring each other.  
+No need to define and maintain the dependencies yourself, and you won't have to worry about the wrong order.
+- The server module doe's not know all the dependencies between modules. Just those which are critical for its operation.
+- In the real world we probably going to use the DB module in other places like CRONs or manual scripts. Instead of listing the dependencies in another place (and maintain this code when things are changing), we can just require the DB module end everything else just works.
+- Modules are initiated as soon as possible. We know that no time is wasted in loading resources.
