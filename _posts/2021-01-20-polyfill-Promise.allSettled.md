@@ -8,7 +8,8 @@ tags: [javascript]
 function settled(p) {
   return new Promise(res => {
     p.then(value => res({status:'fulfilled', value}))
-     .catch(err => res({status:'rejected', reason: err.message || err}));
+     .catch(err => res({status:'rejected', 
+                        reason: err.message || err}));
   });
 }
 function allSettled(promises) {
