@@ -7,7 +7,8 @@ tags: [javascript]
 ```javascript
 function settled(p) {
   return new Promise(res => {
-    p.then(res).catch(res);
+    p.then(value => res({status:'fulfilled', value}))
+     .catch(err => res({status:'rejected', reason: err.message}));
   });
 }
 function allSettled(promises) {
